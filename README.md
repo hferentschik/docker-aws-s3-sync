@@ -1,8 +1,8 @@
-[![](https://images.microbadger.com/badges/image/futurevision/aws-s3-sync.svg)](https://microbadger.com/images/futurevision/aws-s3-sync "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/futurevision/aws-s3-sync.svg)](https://microbadger.com/images/futurevision/aws-s3-sync "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/hferentschik/aws-s3-sync.svg)](https://microbadger.com/images/hferentschik/aws-s3-sync "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/commit/hferentschik/aws-s3-sync.svg)](https://microbadger.com/images/hferentschik/aws-s3-sync "Get your own commit badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/hferentschik/aws-s3-sync.svg)](https://microbadger.com/images/hferentschik/aws-s3-sync "Get your own version badge on microbadger.com")
 
-
-# futurevision/aws-s3-sync
+# hferentschik/aws-s3-sync
 
 Docker container that periodically syncs a folder to Amazon S3 using the [AWS Command Line Interface tool](https://aws.amazon.com/cli/) and cron.
 
@@ -38,7 +38,7 @@ Sync every hour with cron schedule (container keeps running):
         -e CRON_SCHEDULE="0 * * * *" \
 		-e BUCKET_PATH=/path \
         -v /home/user/data:/data:ro \
-        futurevision/aws-s3-sync
+        hferentschik/aws-s3-sync
 
 Sync just once (container is deleted afterwards):
 
@@ -48,10 +48,8 @@ Sync just once (container is deleted afterwards):
 		-e REGION=region \
         -e BUCKET=mybucket \
         -v /home/user/data:/data:ro \
-        futurevision/aws-s3-sync now
+        hferentschik/aws-s3-sync now
 
 ## Credits
 
-This container is heavily inspired by [istepanov/backup-to-s3](https://github.com/istepanov/docker-backup-to-s3/blob/master/README.md).
-
-The main difference is that this container is using Alpine Linux instead of Debian to be more light weight. It also uses a different method of using the AWS CLI tool.
+This container is heavily inspired by [istepanov/backup-to-s3](https://github.com/futurevision/docker-aws-s3-sync).
