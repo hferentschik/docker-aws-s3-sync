@@ -1,4 +1,10 @@
-FROM alpine:3.11.0
+FROM python:3.8.1-alpine3.10
+
+ENV AWSCLI_VERSION "1.16.244"
+RUN apk -v --update add groff 
+RUN pip install --upgrade awscli==$AWSCLI_VERSION && \
+    apk -v --purge del py-pip && \
+    rm /var/cache/apk/*
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
@@ -14,15 +20,6 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
                 
 ENV AWSCLI_VERSION "1.16.244"
 ENV KEY=,SECRET=,REGION=,BUCKET=,BUCKET_PATH=/,CRON_SCHEDULE="0 1 * * *",PARAMS=
-
-RUN apk add --update \
-    python \
-    python-dev \
-    py-pip \
-    build-base \
-    && pip install awscli==$AWSCLI_VERSION --upgrade --user \
-    && apk --purge -v del py-pip \
-    && rm -rf /var/cache/apk/*
 
 VOLUME ["/data"]
 
